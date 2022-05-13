@@ -12,7 +12,7 @@ import com.abulnes16.tempo_native.ui.components.molecules.WeatherItem
 import androidx.compose.ui.Modifier
 
 @Composable
-fun Weather(weather: Weather) {
+fun WeatherSection(weather: Weather) {
     Column(modifier = Modifier.padding(10.dp)) {
         Title(title = "Current weather")
         WeatherItem(weather = weather)
@@ -22,7 +22,7 @@ fun Weather(weather: Weather) {
 @Preview(showBackground = true)
 @Composable
 fun WeatherPreview() {
-    Weather(
+    WeatherSection(
         Weather(
             weatherType = "Sunny",
             temperature = "19",

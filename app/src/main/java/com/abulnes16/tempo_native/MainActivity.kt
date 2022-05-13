@@ -8,6 +8,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.abulnes16.tempo_native.ui.screens.Home
 import com.abulnes16.tempo_native.ui.theme.Tempo_NativeTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,22 +18,9 @@ class MainActivity : ComponentActivity() {
             Tempo_NativeTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    Home()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    Tempo_NativeTheme {
-        Greeting("Android")
     }
 }
