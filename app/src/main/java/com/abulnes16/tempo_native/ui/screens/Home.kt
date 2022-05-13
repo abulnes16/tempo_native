@@ -2,9 +2,12 @@ package com.abulnes16.tempo_native.ui.screens
 
 import ForecastList
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.abulnes16.tempo_native.models.Forecast
 import com.abulnes16.tempo_native.models.Weather
 import com.abulnes16.tempo_native.ui.components.Logo
@@ -28,7 +31,10 @@ fun Home() {
         Forecast("Wind", "Mi", "20"),
         Forecast("Wind", "Ju", "30"),
     )
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
+    ) {
         Logo()
         SearchWeather()
         WeatherSection(weather = dummyWeather)

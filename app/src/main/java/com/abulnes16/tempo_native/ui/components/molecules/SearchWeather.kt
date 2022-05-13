@@ -1,11 +1,8 @@
 package com.abulnes16.tempo_native.ui.components.molecules
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
@@ -25,7 +22,8 @@ import com.abulnes16.tempo_native.ui.theme.Shapes
 @Composable
 fun SearchWeather() {
     Row(
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
+        modifier = Modifier.padding(10.dp)
     ) {
 
         OutlinedTextField(
@@ -38,7 +36,9 @@ fun SearchWeather() {
                 focusedIndicatorColor = Primary
             ),
             modifier = Modifier
-                .padding(horizontal = 12.dp, vertical = 7.dp),
+                .padding(horizontal = 5.dp)
+                .height(60.dp)
+                .width(250.dp),
             shape = RoundedCornerShape(50.dp),
             placeholder = {
                 Row() {
