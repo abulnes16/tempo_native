@@ -13,14 +13,16 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.abulnes16.tempo_native.R
+import com.abulnes16.tempo_native.models.Forecast
 import com.abulnes16.tempo_native.ui.theme.Primary
 import com.abulnes16.tempo_native.ui.theme.Typography
 
 @Composable
-fun ForecastItem() {
+fun ForecastItem(forecast: Forecast) {
     Card(
         shape = RoundedCornerShape(10.dp),
-        elevation = 3.dp
+        elevation = 3.dp,
+        modifier = Modifier.padding(5.dp)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -31,8 +33,8 @@ fun ForecastItem() {
                 contentDescription = null,
                 tint = Primary
             )
-            Text(text = "Lu")
-            Text(text = "25 °C", style = Typography.h4)
+            Text(text = forecast.day)
+            Text(text = "${forecast.temperature} °C", style = Typography.h4)
         }
     }
 }
@@ -40,5 +42,5 @@ fun ForecastItem() {
 @Preview(showBackground = true)
 @Composable
 fun ForecastItemPreview() {
-    ForecastItem()
+    ForecastItem(Forecast("Wind", "Lu", "25"))
 }

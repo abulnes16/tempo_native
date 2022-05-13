@@ -28,7 +28,8 @@ fun WeatherItem(weather: Weather) {
     Card(
         shape = RoundedCornerShape(10.dp),
         modifier = Modifier
-            .background(Color.White),
+            .background(Color.White)
+            .padding(10.dp),
         elevation = 3.dp
     ) {
         Column(
