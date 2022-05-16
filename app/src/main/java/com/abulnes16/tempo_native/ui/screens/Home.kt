@@ -3,7 +3,7 @@ package com.abulnes16.tempo_native.ui.screens
 import ForecastList
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -16,6 +16,8 @@ import com.abulnes16.tempo_native.ui.components.organisms.WeatherSection
 
 @Composable
 fun Home() {
+
+    var cityName by remember { mutableStateOf("") }
 
     val dummyWeather = Weather(
         weatherType = "Sunny",
@@ -36,7 +38,7 @@ fun Home() {
         modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
     ) {
         Logo()
-        SearchWeather()
+        SearchWeather(cityName) { city -> cityName = city }
         WeatherSection(weather = dummyWeather)
         ForecastList(forecast = dummyForecast)
     }

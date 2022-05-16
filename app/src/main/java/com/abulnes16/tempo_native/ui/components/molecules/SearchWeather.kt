@@ -1,57 +1,69 @@
 package com.abulnes16.tempo_native.ui.components.molecules
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.abulnes16.tempo_native.R
 import com.abulnes16.tempo_native.ui.theme.Gray
 import com.abulnes16.tempo_native.ui.theme.Primary
 import com.abulnes16.tempo_native.ui.theme.Shapes
 
 @Composable
-fun SearchWeather() {
+fun SearchWeather(actualCity: String, onChange: (city: String) -> Unit) {
+
+    val focusManager = LocalFocusManager.current
+
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier.padding(10.dp)
     ) {
 
         OutlinedTextField(
-            value = "",
-            onValueChange = {},
+            value = actualCity,
+            onValueChange = onChange,
+            maxLines = 1,
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.White,
-                textColor = Gray,
+                textColor = Color.Black,
                 unfocusedIndicatorColor = Gray,
                 focusedIndicatorColor = Primary
             ),
             modifier = Modifier
                 .padding(horizontal = 5.dp)
-                .height(60.dp)
-                .width(250.dp),
+                .fillMaxWidth(0.6f),
             shape = RoundedCornerShape(50.dp),
+
             placeholder = {
-                Row() {
+                Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_baseline_search_24),
                         contentDescription = null,
                         tint = Primary
                     )
-                    Text(stringResource(id = R.string.city_name))
+                    Text(stringResource(id = R.string.city_name), fontSize = 14.sp)
                 }
 
-            }
-
+            },
+            keyboardActions = KeyboardActions(onDone = { focusManager.clearFocus() }),
+            keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done)
         )
         Button(
             onClick = { /*TODO*/ },
@@ -71,5 +83,5 @@ fun SearchWeather() {
 @Preview(showBackground = true)
 @Composable
 fun SearchWeatherPreview() {
-    SearchWeather()
+    SearchWeather("") { city -> Log.d("Preview", city) }
 }
