@@ -10,6 +10,8 @@ import com.abulnes16.tempo_native.models.Weather
 import com.abulnes16.tempo_native.ui.components.atoms.Title
 import com.abulnes16.tempo_native.ui.components.molecules.WeatherItem
 import androidx.compose.ui.Modifier
+import com.abulnes16.tempo_native.models.Coordinates
+import com.abulnes16.tempo_native.models.Wind
 
 @Composable
 fun WeatherSection(weather: Weather) {
@@ -30,6 +32,6 @@ fun WeatherPreview() {
             country = "HN",
             humidity = "77",
             wind = "2.06"
-        )
+            )
     )
 }

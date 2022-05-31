@@ -17,6 +17,9 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        // Build config variables
+        buildConfigField "String", "WEATHER_API_KEY", '"549fdd24b8610af7c2c6800a20d99074"'
     }
 
     buildTypes {
@@ -62,4 +65,18 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+
+    // retrofit
+
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+
+    // GSON
+
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+
+    // Coroutine
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
 }

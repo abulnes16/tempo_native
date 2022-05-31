@@ -8,8 +8,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.abulnes16.tempo_native.models.Coordinates
 import com.abulnes16.tempo_native.models.Forecast
 import com.abulnes16.tempo_native.models.Weather
+import com.abulnes16.tempo_native.models.Wind
+import com.abulnes16.tempo_native.services.Api
 import com.abulnes16.tempo_native.ui.components.Logo
 import com.abulnes16.tempo_native.ui.components.molecules.SearchWeather
 import com.abulnes16.tempo_native.ui.components.organisms.WeatherSection
@@ -18,6 +21,7 @@ import com.abulnes16.tempo_native.ui.components.organisms.WeatherSection
 fun Home() {
 
     var cityName by remember { mutableStateOf("") }
+
 
     val dummyWeather = Weather(
         weatherType = "Sunny",
@@ -47,5 +51,6 @@ fun Home() {
 @Preview(showBackground = true)
 @Composable
 fun HomePreview() {
+
     Home()
 }
