@@ -41,7 +41,7 @@ fun WeatherItem(weather: Weather) {
                 modifier = Modifier.padding(top = 10.dp, bottom = 10.dp)
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_baseline_wb_sunny),
+                    painter = painterResource(id = weather.weatherType),
                     contentDescription = null,
                     tint = Secondary,
                     modifier = Modifier
@@ -100,12 +100,12 @@ fun WeatherItem(weather: Weather) {
 fun WeatherItemPreview() {
     WeatherItem(
         Weather(
-            weatherType = "Sunny",
-            temperature = "19",
+            weatherType = 1,
+            temperature = 19.0,
             city = "Tegucigalpa",
             country = "HN",
-            humidity = "77",
-            wind = "2.06"
+            humidity = 77.0,
+            wind = 2.06
         )
     )
 }

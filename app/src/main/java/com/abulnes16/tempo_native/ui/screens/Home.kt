@@ -3,54 +3,62 @@ package com.abulnes16.tempo_native.ui.screens
 import ForecastList
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.abulnes16.tempo_native.models.Coordinates
-import com.abulnes16.tempo_native.models.Forecast
-import com.abulnes16.tempo_native.models.Weather
-import com.abulnes16.tempo_native.models.Wind
+import com.abulnes16.tempo_native.models.*
 import com.abulnes16.tempo_native.services.Api
 import com.abulnes16.tempo_native.ui.components.Logo
 import com.abulnes16.tempo_native.ui.components.molecules.SearchWeather
 import com.abulnes16.tempo_native.ui.components.organisms.WeatherSection
+import com.abulnes16.tempo_native.ui.theme.Primary
+import com.abulnes16.tempo_native.ui.theme.Secondary
 
 @Composable
-fun Home() {
+fun Home(weather: Weather?, forecast: List<Forecast>?, fetchState: FetchState) {
 
     var cityName by remember { mutableStateOf("") }
 
 
-    val dummyWeather = Weather(
-        weatherType = "Sunny",
-        temperature = "19",
-        city = "Tegucigalpa",
-        country = "HN",
-        humidity = "77",
-        wind = "2.06"
-    )
-    val dummyForecast = listOf<Forecast>(
-        Forecast("Wind", "Lu", "25"),
-        Forecast("Wind", "Ma", "29"),
-        Forecast("Wind", "Mi", "20"),
-        Forecast("Wind", "Ju", "30"),
-    )
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp)
-    ) {
-        Logo()
-        SearchWeather(cityName) { city -> cityName = city }
-        WeatherSection(weather = dummyWeather)
-        ForecastList(forecast = dummyForecast)
-    }
+
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 5.dp)
+        ) {
+            Logo()
+            SearchWeather(cityName) { city -> cityName = city }
+            if (fetchState == FetchState.SUCCESS && weather != null && forecast != null){
+                WeatherSection(weather = weather)
+                ForecastList(forecast = forecast)
+            }else if (fetchState == FetchState.LOADING) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    CircularProgressIndicator(color = Secondary)
+                }
+            }
+        }
+
+
 }
 
 @Preview(showBackground = true)
 @Composable
 fun HomePreview() {
-
-    Home()
+    val dummyWeather = Weather(
+        weatherType = 0,
+        temperature = 19.0,
+        city = "Tegucigalpa",
+        country = "HN",
+        humidity = 77.0,
+        wind = 2.06
+    )
+    val dummyForecast = listOf<Forecast>(
+        Forecast(0, "Lu", "25"),
+        Forecast(0, "Ma", "29"),
+        Forecast(0, "Mi", "20"),
+        Forecast(0, "Ju", "30")
+    )
+    Home(weather = dummyWeather, forecast = dummyForecast, FetchState.SUCCESS)
 }

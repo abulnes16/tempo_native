@@ -32,7 +32,7 @@ data class ForecastResponse(
 )
 
 data class Forecast(
-    val weatherType: String,
+    val weatherType: Int,
     val day: String,
     val temperature: String
 )

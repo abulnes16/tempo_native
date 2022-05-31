@@ -29,7 +29,7 @@ fun ForecastItem(forecast: Forecast) {
             modifier = Modifier.padding(horizontal = 15.dp, vertical = 5.dp)
         ) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_baseline_air),
+                painter = painterResource(id = forecast.weatherType),
                 contentDescription = null,
                 tint = Primary
             )
@@ -42,5 +42,5 @@ fun ForecastItem(forecast: Forecast) {
 @Preview(showBackground = true)
 @Composable
 fun ForecastItemPreview() {
-    ForecastItem(Forecast("Wind", "Lu", "25"))
+    ForecastItem(Forecast(2, "Lu", "25"))
 }

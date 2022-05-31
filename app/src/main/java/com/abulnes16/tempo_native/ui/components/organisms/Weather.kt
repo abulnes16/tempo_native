@@ -26,12 +26,12 @@ fun WeatherSection(weather: Weather) {
 fun WeatherPreview() {
     WeatherSection(
         Weather(
-            weatherType = "Sunny",
-            temperature = "19",
+            weatherType = 0,
+            temperature = 19.0,
             city = "Tegucigalpa",
             country = "HN",
-            humidity = "77",
-            wind = "2.06"
+            humidity = 77.0,
+            wind = 2.06
             )
     )
 }

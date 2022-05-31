@@ -26,10 +26,10 @@ fun ForecastList(forecast: List<Forecast>) {
 @Composable
 fun ForecastListPreview() {
     val forecast = listOf<Forecast>(
-        Forecast("Wind", "Lu", "25"),
-        Forecast("Wind", "Ma", "29"),
-        Forecast("Wind", "Mi", "20"),
-        Forecast("Wind", "Ju", "30"),
+        Forecast(0, "Lu", "25"),
+        Forecast(0, "Ma", "29"),
+        Forecast(0, "Mi", "20"),
+        Forecast(0, "Ju", "30"),
     )
     ForecastList(forecast = forecast)
 }

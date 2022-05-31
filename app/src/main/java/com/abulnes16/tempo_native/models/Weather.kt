@@ -14,7 +14,7 @@ data class Wind(
 
 data class WeatherInfo(
     val id: Double,
-    val main: String,
+    val main: WeatherTypes?,
     val description: String,
     val icon: String
 )
@@ -60,11 +60,11 @@ data class WeatherResponse(
 
 
 data class Weather(
-    val weatherType: String,
-    val temperature: String,
+    val weatherType: Int,
+    val temperature: Double,
     val city: String,
     val country: String,
-    val humidity: String,
-    val wind: String
+    val humidity: Double,
+    val wind: Double
 )
 
