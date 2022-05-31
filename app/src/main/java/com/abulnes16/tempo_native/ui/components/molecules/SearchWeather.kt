@@ -1,9 +1,9 @@
 package com.abulnes16.tempo_native.ui.components.molecules
 
 import android.util.Log
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -11,10 +11,8 @@ import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
@@ -24,10 +22,9 @@ import androidx.compose.ui.unit.sp
 import com.abulnes16.tempo_native.R
 import com.abulnes16.tempo_native.ui.theme.Gray
 import com.abulnes16.tempo_native.ui.theme.Primary
-import com.abulnes16.tempo_native.ui.theme.Shapes
 
 @Composable
-fun SearchWeather(actualCity: String, onChange: (city: String) -> Unit) {
+fun SearchWeather(actualCity: String, onPress: () -> Unit, onChange: (city: String) -> Unit) {
 
     val focusManager = LocalFocusManager.current
 
@@ -66,7 +63,7 @@ fun SearchWeather(actualCity: String, onChange: (city: String) -> Unit) {
             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done)
         )
         Button(
-            onClick = { /*TODO*/ },
+            onClick = onPress,
             shape = RoundedCornerShape(50.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Primary),
         ) {
@@ -83,5 +80,5 @@ fun SearchWeather(actualCity: String, onChange: (city: String) -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun SearchWeatherPreview() {
-    SearchWeather("") { city -> Log.d("Preview", city) }
+    SearchWeather("", onPress = {}, onChange = { city -> Log.d("Preview", city) })
 }

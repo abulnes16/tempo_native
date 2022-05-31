@@ -27,9 +27,7 @@ class MainActivity : ComponentActivity() {
                 Surface(color = MaterialTheme.colors.background) {
                     window?.statusBarColor = Primary.toArgb()
                     Home(
-                        weather = viewModel.weather,
-                        forecast = viewModel.forecast,
-                        fetchState = viewModel.fetchState
+                        viewModel = viewModel
                     )
                 }
             }
