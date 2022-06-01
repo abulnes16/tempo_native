@@ -1,17 +1,20 @@
 package com.abulnes16.tempo_native.ui.components.molecules
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -23,10 +26,27 @@ import com.abulnes16.tempo_native.R
 import com.abulnes16.tempo_native.ui.theme.Gray
 import com.abulnes16.tempo_native.ui.theme.Primary
 
-@Composable
-fun SearchWeather(actualCity: String, onPress: () -> Unit, onChange: (city: String) -> Unit) {
 
+@Composable
+fun SearchWeather(onPress: (city: String) -> Unit) {
+    val errorText = stringResource(id = R.string.blank_error)
     val focusManager = LocalFocusManager.current
+    val context = LocalContext.current
+    var cityName by remember { mutableStateOf("") }
+    val onSearch: () -> Unit = {
+        if (cityName === "") {
+            Toast
+                .makeText(
+                    context,
+                    errorText, Toast.LENGTH_SHORT
+                )
+                .show()
+
+        } else {
+            onPress(cityName)
+        }
+    }
+
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -34,8 +54,8 @@ fun SearchWeather(actualCity: String, onPress: () -> Unit, onChange: (city: Stri
     ) {
 
         OutlinedTextField(
-            value = actualCity,
-            onValueChange = onChange,
+            value = cityName,
+            onValueChange = { city -> cityName = city },
             maxLines = 1,
             colors = TextFieldDefaults.textFieldColors(
                 backgroundColor = Color.White,
@@ -45,7 +65,8 @@ fun SearchWeather(actualCity: String, onPress: () -> Unit, onChange: (city: Stri
             ),
             modifier = Modifier
                 .padding(horizontal = 5.dp)
-                .fillMaxWidth(0.6f),
+                .fillMaxWidth(0.6f)
+                .height(50.dp),
             shape = RoundedCornerShape(50.dp),
 
             placeholder = {
@@ -63,9 +84,10 @@ fun SearchWeather(actualCity: String, onPress: () -> Unit, onChange: (city: Stri
             keyboardOptions = KeyboardOptions.Default.copy(imeAction = ImeAction.Done)
         )
         Button(
-            onClick = onPress,
+            onClick = onSearch,
             shape = RoundedCornerShape(50.dp),
             colors = ButtonDefaults.buttonColors(backgroundColor = Primary),
+            modifier = Modifier.height(50.dp)
         ) {
             Text(
                 text = stringResource(id = R.string.search),
@@ -80,5 +102,5 @@ fun SearchWeather(actualCity: String, onPress: () -> Unit, onChange: (city: Stri
 @Preview(showBackground = true)
 @Composable
 fun SearchWeatherPreview() {
-    SearchWeather("", onPress = {}, onChange = { city -> Log.d("Preview", city) })
+    SearchWeather(onPress = { city -> Log.d("Preview", city) })
 }

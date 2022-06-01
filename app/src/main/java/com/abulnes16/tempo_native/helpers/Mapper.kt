@@ -10,7 +10,7 @@ import kotlin.math.floor
 
 object Mapper {
 
-   fun getWeatherInfo(weather: WeatherResponse): Weather {
+    fun getWeatherInfo(weather: WeatherResponse): Weather {
         with(weather) {
             val temperature = convertTemperature(this.main.temp)
             val name = this.name
@@ -48,6 +48,7 @@ object Mapper {
     }
 
     private fun getWeatherType(weatherType: WeatherTypes): Int {
+        Log.d("[WEATHER TYPE]", weatherType.toString())
         return when (weatherType) {
             WeatherTypes.SUN -> R.drawable.ic_baseline_wb_sunny
             WeatherTypes.CLOUDS -> R.drawable.ic_baseline_wb_cloudy

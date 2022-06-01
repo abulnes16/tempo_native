@@ -3,6 +3,10 @@ plugins {
     id 'kotlin-android'
 }
 
+def configFile = rootProject.file("apikey.properties")
+def configProperties = new Properties()
+configProperties.load(new FileInputStream(configFile))
+
 android {
     compileSdk 31
 
@@ -19,7 +23,7 @@ android {
         }
 
         // Build config variables
-        buildConfigField "String", "WEATHER_API_KEY", '"549fdd24b8610af7c2c6800a20d99074"'
+        buildConfigField "String", "WEATHER_API_KEY", configProperties['WEATHER_API_KEY']
     }
 
     buildTypes {

@@ -10,13 +10,15 @@ import com.abulnes16.tempo_native.models.Weather
 import com.abulnes16.tempo_native.ui.components.atoms.Title
 import com.abulnes16.tempo_native.ui.components.molecules.WeatherItem
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.abulnes16.tempo_native.R
 import com.abulnes16.tempo_native.models.Coordinates
 import com.abulnes16.tempo_native.models.Wind
 
 @Composable
 fun WeatherSection(weather: Weather) {
     Column(modifier = Modifier.padding(10.dp)) {
-        Title(title = "Current weather")
+        Title(title = stringResource(id = R.string.current_weather))
         WeatherItem(weather = weather)
     }
 }

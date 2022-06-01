@@ -17,21 +17,26 @@ import kotlinx.coroutines.launch
 class TempoViewModel : ViewModel() {
     var weather: Weather? by mutableStateOf(null)
     var forecast: List<Forecast>? by mutableStateOf(listOf())
-    var fetchState: FetchState by mutableStateOf(FetchState.LOADING)
+    var fetchState: FetchState by mutableStateOf(FetchState.SUCCESS)
 
 
     fun getWeather(cityName: String? = "tegucigalpa") {
         fetchState = FetchState.LOADING
         viewModelScope.launch {
-            val query = UrlBuilder.createWeatherUrl("weather", "q=${cityName ?: "tegucigalpa"}")
-            val response = Api.weatherService.getWeather("${Api.BASE_URL}${query}")
-            Log.d("[GET WEATHER]:", response.toString())
-            if (response.isSuccessful) {
-                val body = response.body()
-                val coords = body?.coord
-                getForecast(coords?.lat!!, coords.lon)
-                weather = Mapper.getWeatherInfo(body)
-            } else {
+            try {
+                val query = UrlBuilder.createWeatherUrl("weather", "q=${cityName ?: "tegucigalpa"}")
+                val response = Api.weatherService.getWeather("${Api.BASE_URL}${query}")
+                Log.d("[GET WEATHER]:", response.toString())
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    val coords = body?.coord
+                    getForecast(coords?.lat!!, coords.lon)
+                    weather = Mapper.getWeatherInfo(body)
+                } else {
+                    throw  Exception("Failed to fetch weather")
+                }
+            } catch (e: Exception) {
+                Log.e("[GET WEATHER EXCEPTION]", e.toString())
                 fetchState = FetchState.ERROR
             }
         }
@@ -39,18 +44,24 @@ class TempoViewModel : ViewModel() {
 
     private fun getForecast(lat: Double, lon: Double) {
         viewModelScope.launch {
-            val query = UrlBuilder.createWeatherUrl(
-                "onecall",
-                "lat=${lat}&lon=${lon}&exclude=hourly,minutely"
-            )
-            val response = Api.weatherService.getForecast("${Api.BASE_URL}${query}")
-            if (response.isSuccessful) {
-                val body = response.body()
-                forecast = body?.daily?.map { forecast -> Mapper.getForecastInfo(forecast) }
-                fetchState = FetchState.SUCCESS
-            } else {
+            try {
+                val query = UrlBuilder.createWeatherUrl(
+                    "onecall",
+                    "lat=${lat}&lon=${lon}&exclude=hourly,minutely"
+                )
+                val response = Api.weatherService.getForecast("${Api.BASE_URL}${query}")
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    forecast = body?.daily?.map { forecast -> Mapper.getForecastInfo(forecast) }
+                    fetchState = FetchState.SUCCESS
+                } else {
+                    throw Exception("Failed to fetch forecast")
+                }
+            } catch (e: Exception) {
+                Log.e("[FORECAST EXCEPTION]", e.toString())
                 fetchState = FetchState.ERROR
             }
+
         }
 
     }
