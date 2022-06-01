@@ -1,6 +1,6 @@
 package com.abulnes16.tempo_native.models
 
-import android.opengl.Visibility
+
 import androidx.compose.ui.graphics.Color
 
 data class Coordinates(

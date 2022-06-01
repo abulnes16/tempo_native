@@ -30,7 +30,7 @@ fun ForecastList(forecast: List<Forecast>) {
 @Composable
 fun ForecastListPreview() {
     val weatherType = WeatherType(R.drawable.ic_baseline_wb_cloudy, Primary)
-    val forecast = listOf<Forecast>(
+    val forecast = listOf(
         Forecast(weatherType, "Lu", "25"),
         Forecast(weatherType, "Ma", "29"),
         Forecast(weatherType, "Mi", "20"),

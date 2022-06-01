@@ -11,12 +11,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.abulnes16.tempo_native.models.*
-import com.abulnes16.tempo_native.services.Api
-import com.abulnes16.tempo_native.ui.components.Logo
+import com.abulnes16.tempo_native.ui.components.atoms.Logo
 import com.abulnes16.tempo_native.ui.components.molecules.ErrorMessage
 import com.abulnes16.tempo_native.ui.components.molecules.SearchWeather
 import com.abulnes16.tempo_native.ui.components.organisms.WeatherSection
-import com.abulnes16.tempo_native.ui.theme.Primary
 import com.abulnes16.tempo_native.ui.theme.Secondary
 import com.abulnes16.tempo_native.viewmodels.TempoViewModel
 

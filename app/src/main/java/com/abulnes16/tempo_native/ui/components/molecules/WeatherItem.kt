@@ -13,12 +13,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.abulnes16.tempo_native.R
-import com.abulnes16.tempo_native.models.Coordinates
 import com.abulnes16.tempo_native.models.Weather
 import com.abulnes16.tempo_native.models.WeatherType
-import com.abulnes16.tempo_native.models.Wind
 import com.abulnes16.tempo_native.ui.theme.Alternative
 import com.abulnes16.tempo_native.ui.theme.Primary
 import com.abulnes16.tempo_native.ui.theme.Secondary

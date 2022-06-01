@@ -1,7 +1,6 @@
 package com.abulnes16.tempo_native.helpers
 
-import android.util.Log
-import androidx.compose.ui.text.capitalize
+
 import com.abulnes16.tempo_native.R
 import com.abulnes16.tempo_native.models.*
 import com.abulnes16.tempo_native.ui.theme.Alternative
@@ -69,7 +68,7 @@ object Mapper {
             WeatherTypes.Clouds.weatherName -> Gray
             WeatherTypes.Snow.weatherName,
             WeatherTypes.Rain.weatherName,
-            WeatherTypes.Drizzle.weatherName-> Alternative
+            WeatherTypes.Drizzle.weatherName -> Alternative
             else -> Secondary
 
         }
@@ -79,7 +78,8 @@ object Mapper {
 
     private fun getWeekOfDay(date: Long): String {
         val dateObj = Date(date * 1000)
-        return SimpleDateFormat("E").format(dateObj).replaceFirstChar { it.uppercase() }
+        return SimpleDateFormat("E", Locale.ENGLISH).format(dateObj)
+            .replaceFirstChar { it.uppercase() }
     }
 
 }

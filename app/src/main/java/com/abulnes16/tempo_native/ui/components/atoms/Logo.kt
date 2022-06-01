@@ -1,4 +1,4 @@
-package com.abulnes16.tempo_native.ui.components
+package com.abulnes16.tempo_native.ui.components.atoms
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
