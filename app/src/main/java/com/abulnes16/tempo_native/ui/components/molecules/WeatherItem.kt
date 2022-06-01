@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.sp
 import com.abulnes16.tempo_native.R
 import com.abulnes16.tempo_native.models.Coordinates
 import com.abulnes16.tempo_native.models.Weather
+import com.abulnes16.tempo_native.models.WeatherType
 import com.abulnes16.tempo_native.models.Wind
 import com.abulnes16.tempo_native.ui.theme.Alternative
 import com.abulnes16.tempo_native.ui.theme.Primary
@@ -25,6 +26,9 @@ import com.abulnes16.tempo_native.ui.theme.Typography
 
 @Composable
 fun WeatherItem(weather: Weather) {
+
+    val (weatherIcon, weatherColor) = weather.weatherType
+
     Card(
         shape = RoundedCornerShape(10.dp),
         modifier = Modifier
@@ -41,9 +45,9 @@ fun WeatherItem(weather: Weather) {
                 modifier = Modifier.padding(top = 10.dp, bottom = 10.dp)
             ) {
                 Icon(
-                    painter = painterResource(id = weather.weatherType),
+                    painter = painterResource(id = weatherIcon),
                     contentDescription = null,
-                    tint = Secondary,
+                    tint = weatherColor,
                     modifier = Modifier
                         .width(40.dp)
                         .height(40.dp)
@@ -100,7 +104,7 @@ fun WeatherItem(weather: Weather) {
 fun WeatherItemPreview() {
     WeatherItem(
         Weather(
-            weatherType = 1,
+            weatherType = WeatherType(R.drawable.ic_baseline_snow, Secondary),
             temperature = 19.0,
             city = "Tegucigalpa",
             country = "HN",

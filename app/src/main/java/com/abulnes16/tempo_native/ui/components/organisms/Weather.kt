@@ -13,7 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.abulnes16.tempo_native.R
 import com.abulnes16.tempo_native.models.Coordinates
+import com.abulnes16.tempo_native.models.WeatherType
 import com.abulnes16.tempo_native.models.Wind
+import com.abulnes16.tempo_native.ui.theme.Primary
 
 @Composable
 fun WeatherSection(weather: Weather) {
@@ -28,7 +30,7 @@ fun WeatherSection(weather: Weather) {
 fun WeatherPreview() {
     WeatherSection(
         Weather(
-            weatherType = 0,
+            weatherType = WeatherType(R.drawable.ic_baseline_wb_cloudy, Primary),
             temperature = 19.0,
             city = "Tegucigalpa",
             country = "HN",

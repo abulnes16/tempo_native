@@ -1,6 +1,7 @@
 package com.abulnes16.tempo_native.models
 
 import android.opengl.Visibility
+import androidx.compose.ui.graphics.Color
 
 data class Coordinates(
     val lat: Double,
@@ -14,9 +15,14 @@ data class Wind(
 
 data class WeatherInfo(
     val id: Double,
-    val main: WeatherTypes?,
+    val main: String,
     val description: String,
     val icon: String
+)
+
+data class WeatherType(
+    val weatherIcon: Int,
+    val weatherColor: Color
 )
 
 data class Temperature(
@@ -60,7 +66,7 @@ data class WeatherResponse(
 
 
 data class Weather(
-    val weatherType: Int,
+    val weatherType: WeatherType,
     val temperature: Double,
     val city: String,
     val country: String,

@@ -50,8 +50,10 @@ class TempoViewModel : ViewModel() {
                     "lat=${lat}&lon=${lon}&exclude=hourly,minutely"
                 )
                 val response = Api.weatherService.getForecast("${Api.BASE_URL}${query}")
+                Log.d("[GET FORECAST]:", response.toString())
                 if (response.isSuccessful) {
                     val body = response.body()
+                    Log.d("[Forecast body]", body.toString())
                     forecast = body?.daily?.map { forecast -> Mapper.getForecastInfo(forecast) }
                     fetchState = FetchState.SUCCESS
                 } else {
