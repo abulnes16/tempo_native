@@ -62,14 +62,16 @@ object Mapper {
         }
 
         val weatherColor = when (weatherType) {
-            WeatherTypes.Sun.weatherName -> Primary
+            WeatherTypes.Sun.weatherName -> Secondary
 
             WeatherTypes.Thunderstorm.weatherName,
             WeatherTypes.Clouds.weatherName -> Gray
+
             WeatherTypes.Snow.weatherName,
             WeatherTypes.Rain.weatherName,
             WeatherTypes.Drizzle.weatherName -> Alternative
-            else -> Secondary
+
+            else -> Primary
 
         }
 
